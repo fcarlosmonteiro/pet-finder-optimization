@@ -1,15 +1,12 @@
-from __future__ import print_function
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 import seaborn as sb
-import random
-import math
 
 def compute_kde():
     '''
     Read the data into a pandas DataFrame
     Data with 68 points of missing pets
+    Plot views from the dataset
     '''
 
     sb.set_style("white")
@@ -21,6 +18,8 @@ def compute_kde():
     plt.figure(figsize=(12.75, 8))
     plt.plot([6.375, 6.375], [0, 8], "--", color="black", alpha=0.4, lw=1.25)
 
+    
+    #ploting all of the points according to the record that they came from.
     for month, group in dataset.groupby("Month"):
         plt.plot(group.X, group.Y, "o", label="Month %d" % (month))
 
@@ -29,7 +28,7 @@ def compute_kde():
     plt.xticks([])
     plt.yticks([])
     plt.legend(loc="upper center", ncol=7, frameon=True, fancybox=True, bbox_to_anchor=(0.5, 1.1))
-    plt.show();
+    #plt.show();
 
 
     #computing a kernel density estimation (KDE) of the points, it can show us where a missing pet is most likely to appear.
@@ -41,7 +40,7 @@ def compute_kde():
     plt.ylabel("")
     plt.xticks([])
     plt.yticks([])
-    plt.show();
+    #plt.show();
     
     return dataset
 
