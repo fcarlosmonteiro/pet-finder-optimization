@@ -113,7 +113,7 @@ def plot_trajectory(indiv_genome):
     plt.savefig('fit.png')
 
 
-def run_genetic_algorithm(generations=1000, population_size=100):
+def run_genetic_algorithm(generations=1000, population_size=50):
     """
         The main method of Genetic Algorithm.
         
