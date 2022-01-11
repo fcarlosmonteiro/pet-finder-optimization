@@ -32,7 +32,7 @@ def compute_kde():
 
 
     #computing a kernel density estimation (KDE) of the points, it can show us where a missing pet is most likely to appear.
-    sb.kdeplot(dataset.X, dataset.Y, shade=True, cmap="Blues")
+    sb.kdeplot(dataset.X, dataset.Y, shade=True, cmap="Oranges")
     plt.plot([6.375, 6.375], [0, 8], "--", color="black", alpha=0.4, lw=1.25)
     plt.xlim(0, 12.75)
     plt.ylim(0, 8)
@@ -40,7 +40,7 @@ def compute_kde():
     plt.ylabel("")
     plt.xticks([])
     plt.yticks([])
-    #plt.show();
+    plt.show();
     
     return dataset
 

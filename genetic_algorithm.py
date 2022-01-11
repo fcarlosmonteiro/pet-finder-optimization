@@ -1,5 +1,5 @@
 from __future__ import print_function
-#from data_view import compute_kde
+from data_view import compute_kde
 import matplotlib.pyplot as plt
 import pandas as pd
 import math
