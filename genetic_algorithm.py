@@ -23,12 +23,14 @@ def calculate_distance(x1, y1, x2, y2):
 def compute_fitness(solution):
     """
         Computes the fitness function. GA tries minimize this function, so, a lower distance is better to solve the problem.
+        Analyzes the distance between the coordinates pair by pair.
     """
     fitness = 0.0
-    
+    #print("sol:", solution)
     for index in range(1, len(solution)):
         w1 = solution[index]
         w2 = solution[index - 1]
+        #print(w1,w2)
         fitness += calculate_distance(pet_location_map[w1][0], pet_location_map[w1][1], pet_location_map[w2][0], pet_location_map[w2][1])
         
     return fitness
@@ -113,7 +115,7 @@ def plot_trajectory(indiv_genome):
     plt.savefig('fit.png')
 
 
-def run_genetic_algorithm(generations=1000, population_size=50):
+def run_genetic_algorithm(generations, population_size):
     """
         The main method of Genetic Algorithm.
         
@@ -144,6 +146,7 @@ def run_genetic_algorithm(generations=1000, population_size=50):
                                                    key=population_fitness.get)[:population_subset_size]):
 
             if (generation % generations_10pct == 0 or generation == (generations - 1)) and rank == 0:
+                #pass
                 print("Generation %d best: %f" % (generation, population_fitness[individual]))
                 print(individual)
                 plot_trajectory(individual)
@@ -165,4 +168,4 @@ def run_genetic_algorithm(generations=1000, population_size=50):
 
         population = new_population
         
-run_genetic_algorithm(generations=10000, population_size=100)
+run_genetic_algorithm(generations=1000, population_size=50)

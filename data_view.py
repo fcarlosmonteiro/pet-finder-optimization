@@ -40,7 +40,8 @@ def compute_kde():
     plt.ylabel("")
     plt.xticks([])
     plt.yticks([])
-    plt.show();
+    plt.savefig('heatmap.png')
+    #plt.show();
     
     return dataset
 
