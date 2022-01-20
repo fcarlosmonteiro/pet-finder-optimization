@@ -12,7 +12,7 @@ def compute_kde():
     sb.set_style("white")
     plt.style.use("fivethirtyeight")
 
-    dataset = pd.read_csv("dataset.csv")
+    dataset = pd.read_csv("dataset/dataset.csv")
     #print(dataset.describe())
 
     plt.figure(figsize=(12.75, 8))
