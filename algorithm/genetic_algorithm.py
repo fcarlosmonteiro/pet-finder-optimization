@@ -1,11 +1,11 @@
 from __future__ import print_function
-from data_view import compute_kde
+#from data_view import compute_kde
 import matplotlib.pyplot as plt
 import pandas as pd
 import math
 import random
 
-db = pd.read_csv("dataset/dataset.csv")
+db = pd.read_csv("dataset/dataset_DV.csv")
 
 pet_location_map = {}
 
@@ -168,4 +168,4 @@ def run_genetic_algorithm(generations, population_size):
 
         population = new_population
         
-run_genetic_algorithm(generations=2000, population_size=50)
+run_genetic_algorithm(generations=1000, population_size=10)

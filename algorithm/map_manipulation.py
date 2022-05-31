@@ -8,10 +8,10 @@ m = folium.Map(location=center, tiles="OpenStreetMap", zoom_start=16)
 
 # Make a data frame with dots to show on the map
 data = pd.DataFrame({
-   'lon':[-53.063426526198306,-53.05160334995361],
-   'lat':[-25.752299003614507,-25.762638238002804],
-   'name':['Bob', 'Tobi'],
-   'value':[10, 12]
+   'lon':[-53.06342,-53.05160,-53.05668, -53.06003,-53.06226,-53.05777,-53.06638,-53.08245,-53.06719,-53.06851,-53.06596,-53.06457,-53.06204],
+   'lat':[-25.75229,-25.76263,-25.74263,-25.75328,-25.75332,-25.75316,-25.74445,-25.74773,-25.75695,-25.75669,-25.75468,-25.75704,-25.75422],
+   'name':['Bob', 'Tobi','Pipoca','Reginaldo','Totó','Tom','Devil','Jorginho','Paçoca','Gil','Magrelo','Princesa','Mimosa'],
+   'value':[10, 12, 40, 70, 23, 43, 100, 43, 21, 11, 15, 26, 66]
 }, dtype=str)
 
 # add marker one by one on the map
