@@ -10,7 +10,7 @@ db = pd.read_csv("dataset/dataset.csv")
 pet_location_map = {}
 
 for i, record in db.iterrows():
-    key = "M%dI%d" % (record.Month, record.Index)
+    key = "M%dD%d" % (record.Month, record.Day)
     pet_location_map[key] = (record.X, record.Y)
 #print(pet_location_map)
     
