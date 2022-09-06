@@ -1,12 +1,13 @@
 from __future__ import print_function
 #from data_view import compute_kde
+import map_manipulation
 import matplotlib.pyplot as plt
 import pandas as pd
 import math
 import random
 
 db = pd.read_csv("/home/fcarlos/Documentos/Projetos-Git/pet-finder-optimization/dataset/dataset_DV.csv")
-
+mp = map_manipulation.Create_Maps()
 pet_location_map = {}
 
 for i, record in db.iterrows():
@@ -26,7 +27,7 @@ def compute_fitness(solution):
         Analyzes the distance between the coordinates pair by pair.
     """
     fitness = 0.0
-    print("sol:", solution)
+    #print("sol:", solution)
     for index in range(1, len(solution)):
         w1 = solution[index]
         w2 = solution[index - 1]
@@ -92,23 +93,25 @@ def plot_trajectory(indiv_genome):
     """
         Create a visualization of the given path.
     """
-    agent_xs = []
-    agent_ys = []
+    lat = []
+    long = []
     agent_fitness = compute_fitness(indiv_genome)
 
     for pet_loc in indiv_genome:
-        agent_xs.append(pet_location_map[pet_loc][0])
-        agent_ys.append(pet_location_map[pet_loc][1])
+        lat.append(pet_location_map[pet_loc][0])
+        long.append(pet_location_map[pet_loc][1])
 
-    print(agent_xs,agent_ys)
+    mp.mark_points(lat,long)
+    mp.plot_route(lat,long)
+
     plt.figure()
     plt.title("Fitness: %f" % (agent_fitness))
-    plt.plot(agent_xs[:18], agent_ys[:18], "-o", markersize=7)
-    plt.plot(agent_xs[17:35], agent_ys[17:35], "-o", markersize=7)
-    plt.plot(agent_xs[34:52], agent_ys[34:52], "-o", markersize=7)
-    plt.plot(agent_xs[51:], agent_ys[51:], "-o", markersize=7)
-    plt.plot(agent_xs[0], agent_ys[0], "^", color="#1f77b4", markersize=15)
-    plt.plot(agent_xs[-1], agent_ys[-1], "v", color="#d62728", markersize=15)
+    plt.plot(lat[:18], long[:18], "-o", markersize=7)
+    plt.plot(lat[17:35], long[17:35], "-o", markersize=7)
+    plt.plot(lat[34:52], long[34:52], "-o", markersize=7)
+    plt.plot(lat[51:], long[51:], "-o", markersize=7)
+    plt.plot(lat[0], long[0], "^", color="#1f77b4", markersize=15)
+    plt.plot(lat[-1], long[-1], "v", color="#d62728", markersize=15)
     plt.grid(False)
     plt.xticks([])
     plt.yticks([])
