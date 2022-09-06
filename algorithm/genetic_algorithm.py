@@ -104,21 +104,6 @@ def plot_trajectory(indiv_genome):
     mp.mark_points(lat,long)
     mp.plot_route(lat,long)
 
-    plt.figure()
-    plt.title("Fitness: %f" % (agent_fitness))
-    plt.plot(lat[:18], long[:18], "-o", markersize=7)
-    plt.plot(lat[17:35], long[17:35], "-o", markersize=7)
-    plt.plot(lat[34:52], long[34:52], "-o", markersize=7)
-    plt.plot(lat[51:], long[51:], "-o", markersize=7)
-    plt.plot(lat[0], long[0], "^", color="#1f77b4", markersize=15)
-    plt.plot(lat[-1], long[-1], "v", color="#d62728", markersize=15)
-    plt.grid(False)
-    plt.xticks([])
-    plt.yticks([])
-    #plt.show()
-    plt.savefig('fit.png')
-
-
 def run_genetic_algorithm(generations, population_size):
     """
         The main method of Genetic Algorithm.
