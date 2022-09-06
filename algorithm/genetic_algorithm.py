@@ -5,7 +5,7 @@ import pandas as pd
 import math
 import random
 
-db = pd.read_csv("dataset/dataset_DV.csv")
+db = pd.read_csv("/home/fcarlos/Documentos/Projetos-Git/pet-finder-optimization/dataset/dataset_DV.csv")
 
 pet_location_map = {}
 
@@ -26,11 +26,11 @@ def compute_fitness(solution):
         Analyzes the distance between the coordinates pair by pair.
     """
     fitness = 0.0
-    #print("sol:", solution)
+    print("sol:", solution)
     for index in range(1, len(solution)):
         w1 = solution[index]
         w2 = solution[index - 1]
-        #print(w1,w2)
+        print(w1,w2)
         fitness += calculate_distance(pet_location_map[w1][0], pet_location_map[w1][1], pet_location_map[w2][0], pet_location_map[w2][1])
         
     return fitness
@@ -100,6 +100,7 @@ def plot_trajectory(indiv_genome):
         agent_xs.append(pet_location_map[pet_loc][0])
         agent_ys.append(pet_location_map[pet_loc][1])
 
+    print(agent_xs,agent_ys)
     plt.figure()
     plt.title("Fitness: %f" % (agent_fitness))
     plt.plot(agent_xs[:18], agent_ys[:18], "-o", markersize=7)
@@ -168,4 +169,4 @@ def run_genetic_algorithm(generations, population_size):
 
         population = new_population
         
-run_genetic_algorithm(generations=1000, population_size=10)
+run_genetic_algorithm(generations=100, population_size=50)
