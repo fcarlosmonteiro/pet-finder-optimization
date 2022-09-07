@@ -101,7 +101,6 @@ def plot_trajectory(indiv_genome):
         lat.append(pet_location_map[pet_loc][0])
         long.append(pet_location_map[pet_loc][1])
 
-    mp.mark_points(lat,long)
     mp.plot_route(lat,long)
 
 def run_genetic_algorithm(generations, population_size):
