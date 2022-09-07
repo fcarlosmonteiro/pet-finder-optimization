@@ -10,7 +10,6 @@ class Create_Maps:
 
 
    def plot_route(self,lat,long):
-
       self.data = pd.DataFrame({
          'lon':long,
          'lat':lat,

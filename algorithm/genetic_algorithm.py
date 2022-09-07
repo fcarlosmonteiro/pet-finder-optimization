@@ -16,11 +16,13 @@ for i, record in db.iterrows():
     pet_location_map[key] = (record.X, record.Y)
 #print(pet_location_map)
     
-def calculate_distance(x1, y1, x2, y2):
+def calculate_distance(lat1, long1, lat2, long2):
     """
-        Returns the Euclidean distance between the points
+        Returns the distance in km between the points
     """
-    return math.sqrt( (x2 - x1)**2 + (y2 - y1)**2 )
+    loc1 = (lat1,long1)
+    loc2 = (lat2,long2)
+    return haversine(loc1,loc2)
 
 def compute_fitness(solution):
     """
@@ -32,8 +34,8 @@ def compute_fitness(solution):
         w1 = solution[index]
         w2 = solution[index - 1]
         fitness += calculate_distance(pet_location_map[w1][0], pet_location_map[w1][1], pet_location_map[w2][0], pet_location_map[w2][1])
-        print(fitness)
-        
+    
+    print("solução = ", solution, "fitness =" ,fitness)    
     return fitness
 
 def generate_random_individual():
@@ -95,8 +97,6 @@ def plot_trajectory(indiv_genome):
     """
     lat = []
     long = []
-    agent_fitness = compute_fitness(indiv_genome)
-
     for pet_loc in indiv_genome:
         lat.append(pet_location_map[pet_loc][0])
         long.append(pet_location_map[pet_loc][1])
@@ -130,9 +130,7 @@ def run_genetic_algorithm(generations, population_size):
 
         # Take the top 10% shortest paths and produce offspring from each of them
         new_population = []
-        for rank, individual in enumerate(sorted(population_fitness,
-                                                   key=population_fitness.get)[:population_subset_size]):
-
+        for rank, individual in enumerate(sorted(population_fitness,key=population_fitness.get)[:population_subset_size]):
             if (generation % generations_10pct == 0 or generation == (generations - 1)) and rank == 0:
                 #pass
                 print("Generation %d best: %f" % (generation, population_fitness[individual]))
@@ -159,7 +157,6 @@ def run_genetic_algorithm(generations, population_size):
             del population[i]
 
         population = new_population
-
-        #plot_trajectory(individual)
+        print()
         
-run_genetic_algorithm(generations=100, population_size=50)
+run_genetic_algorithm(generations=50, population_size=10)
