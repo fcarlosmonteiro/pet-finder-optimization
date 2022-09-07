@@ -12,8 +12,8 @@ def compute_kde():
     sb.set_style("white")
     plt.style.use("fivethirtyeight")
 
-    dataset = pd.read_csv("dataset/dataset.csv")
-    #print(dataset.describe())
+    dataset = pd.read_csv("/home/fcarlos/Documentos/Projetos-Git/pet-finder-optimization/dataset/dataset_DV.csv")
+    print(dataset.describe())
 
     plt.figure(figsize=(12.75, 8))
     plt.plot([6.375, 6.375], [0, 8], "--", color="black", alpha=0.4, lw=1.25)
@@ -32,7 +32,7 @@ def compute_kde():
 
 
     #computing a kernel density estimation (KDE) of the points, it can show us where a missing pet is most likely to appear.
-    sb.kdeplot(dataset.X, dataset.Y, shade=True, cmap="Oranges")
+    sb.kdeplot(data=dataset, X="waiting", Y="duration", hue="kind", fill=True)
     plt.plot([6.375, 6.375], [0, 8], "--", color="black", alpha=0.4, lw=1.25)
     plt.xlim(0, 12.75)
     plt.ylim(0, 8)

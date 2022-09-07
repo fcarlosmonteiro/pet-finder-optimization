@@ -14,15 +14,15 @@ class Create_Maps:
       self.data = pd.DataFrame({
          'lon':long,
          'lat':lat,
-         #'name':['Bob, Cachorro', 'Tobi','Pipoca','Reginaldo','Totó','Tom','Devil','Jorginho','Gil','Magrelo']
+         'name':['Bob, Cachorro', 'Tobi','Pipoca','Reginaldo','Totó','Tom','Devil','Jorginho','Gil','Magrelo']
       }, dtype=str)
 
       loc = list(zip(lat,long))
       for i,pet in enumerate(loc):
          folium.Marker(
             location=pet,
-            icon=folium.DivIcon(html=f"""<div style="font-family: courier new; font-size:20px; color: blue">{ i }</div>"""),
-            popup=i
+            icon=folium.DivIcon(html=f"""<div style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size:20px; color: blue">{ i+1 }</div>"""),
+            popup=self.data.iloc[i]['name']
          ).add_to(self.m)
          
       folium.PolyLine(loc,

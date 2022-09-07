@@ -1,5 +1,6 @@
 from __future__ import print_function
 #from data_view import compute_kde
+from haversine import haversine
 import map_manipulation
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -31,6 +32,7 @@ def compute_fitness(solution):
         w1 = solution[index]
         w2 = solution[index - 1]
         fitness += calculate_distance(pet_location_map[w1][0], pet_location_map[w1][1], pet_location_map[w2][0], pet_location_map[w2][1])
+        print(fitness)
         
     return fitness
 
