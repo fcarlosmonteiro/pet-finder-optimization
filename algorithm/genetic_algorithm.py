@@ -159,4 +159,4 @@ def run_genetic_algorithm(generations, population_size):
         population = new_population
         print()
         
-run_genetic_algorithm(generations=50, population_size=10)
+run_genetic_algorithm(generations=1000, population_size=100)
