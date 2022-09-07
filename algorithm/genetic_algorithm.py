@@ -27,11 +27,9 @@ def compute_fitness(solution):
         Analyzes the distance between the coordinates pair by pair.
     """
     fitness = 0.0
-    #print("sol:", solution)
     for index in range(1, len(solution)):
         w1 = solution[index]
         w2 = solution[index - 1]
-        print(w1,w2)
         fitness += calculate_distance(pet_location_map[w1][0], pet_location_map[w1][1], pet_location_map[w2][0], pet_location_map[w2][1])
         
     return fitness
@@ -137,7 +135,11 @@ def run_genetic_algorithm(generations, population_size):
                 #pass
                 print("Generation %d best: %f" % (generation, population_fitness[individual]))
                 print(individual)
-                plot_trajectory(individual)
+                
+                if generation+1==generations:
+                    print()
+                    print('##### Recomendação da rota finalizada #####')
+                    plot_trajectory(individual)
 
             # Create 1 exact copy of each top path
             new_population.append(individual)
@@ -155,5 +157,7 @@ def run_genetic_algorithm(generations, population_size):
             del population[i]
 
         population = new_population
+
+        #plot_trajectory(individual)
         
 run_genetic_algorithm(generations=100, population_size=50)
