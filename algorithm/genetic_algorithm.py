@@ -1,6 +1,6 @@
 from __future__ import print_function
+from fitness_function import compute_fitness
 #from data_view import compute_kde
-from haversine import haversine
 import map_manipulation
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -16,28 +16,6 @@ for i, record in db.iterrows():
     pet_location_map[key] = (record.X, record.Y)
 #print(pet_location_map)
     
-def calculate_distance(lat1, long1, lat2, long2):
-    """
-        Returns the distance in km between the points
-    """
-    loc1 = (lat1,long1)
-    loc2 = (lat2,long2)
-    return haversine(loc1,loc2)
-
-def compute_fitness(solution):
-    """
-        Computes the fitness function. GA tries minimize this function, so, a lower distance is better to solve the problem.
-        Analyzes the distance between the coordinates pair by pair.
-    """
-    fitness = 0.0
-    for index in range(1, len(solution)):
-        w1 = solution[index]
-        w2 = solution[index - 1]
-        fitness += calculate_distance(pet_location_map[w1][0], pet_location_map[w1][1], pet_location_map[w2][0], pet_location_map[w2][1])
-    
-    print("solução = ", solution, "fitness =" ,fitness)    
-    return fitness
-
 def generate_random_individual():
     """
         Creates a random path.
@@ -126,7 +104,7 @@ def run_genetic_algorithm(generations, population_size):
             if individual in population_fitness:
                 continue
 
-            population_fitness[individual] = compute_fitness(individual)
+            population_fitness[individual] = compute_fitness(individual,pet_location_map)
 
         # Take the top 10% shortest paths and produce offspring from each of them
         new_population = []
