@@ -135,6 +135,6 @@ def run_genetic_algorithm(generations, population_size):
             del population[i]
 
         population = new_population
-        print()
+        #print()
         
-run_genetic_algorithm(generations=1000, population_size=100)
+run_genetic_algorithm(generations=100, population_size=10)

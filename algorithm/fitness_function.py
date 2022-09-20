@@ -19,5 +19,5 @@ def compute_fitness(solution,pet_location_map):
         w2 = solution[index - 1]
         fitness += calculate_distance(pet_location_map[w1][0], pet_location_map[w1][1], pet_location_map[w2][0], pet_location_map[w2][1])
     
-    print("solução = ", solution, "fitness =" ,fitness)    
+    #print("solução = ", solution, "fitness =" ,fitness)    
     return fitness
